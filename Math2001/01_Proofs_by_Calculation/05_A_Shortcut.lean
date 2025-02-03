@@ -22,5 +22,8 @@ example {x y : ℚ} (hx : x = 2) (hy : y ^ 2 = -7) : x + y ^ 2 = -5 := by
 
 -- Vérifiez que `addarith` ne peut pas vérifier cette déduction
 example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 := by
-  sorry
+  calc
+    w = (4 - 1) / 3 := by rw[←h1]; ring
+    _ = 3 / 3 := by norm_num
+    _ = 1 := by norm_num
   done
